@@ -50,7 +50,7 @@ function App() {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: 'Yes, delete all!'
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire(
