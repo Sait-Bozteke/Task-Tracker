@@ -3,6 +3,7 @@ import "./App.css";
 import AddTask from "./components/AddTask";
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
+import Swal from "sweetalert2";
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -40,6 +41,27 @@ function App() {
     const addNewTask = { id, ...newTask };
     setTasks([...tasks, addNewTask]);
   };
+  // Delete All Task
+  const deleteAllTasks=()=>{
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+      }
+    })
+    setTasks([])
+  }
 
   // TOGGLE DONE
   const toggleDone = (toggleDoneId) => {
@@ -65,7 +87,7 @@ function App() {
       {showAddTask && <AddTask addTask={addTask} />}
 
       {tasks.length > 0 ? (
-        <Tasks tasks={tasks} deleteTask={deleteTask} toggleDone={toggleDone} />
+        <Tasks tasks={tasks} deleteTask={deleteTask} toggleDone={toggleDone} deleteAllTasks={deleteAllTasks} />
       ) : (
         <h2 style={{ textAlign: "center" }}>NO TASK TO SHOW</h2>
       )}

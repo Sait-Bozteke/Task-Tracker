@@ -1,11 +1,24 @@
 import Duty from "./Duty";
 
-const Tasks = ({ tasks, deleteTask, toggleDone }) => {
+const Tasks = ({ tasks, deleteTask, toggleDone, deleteAllTasks}) => {
   return (
     <div>
-      {tasks.map((task) => (
-        <Duty duty={task} deleteTask={deleteTask} toggleDone={toggleDone} />
-      ))}
+      <div>
+        {tasks.map((task) => (
+          <Duty duty={task} deleteTask={deleteTask} toggleDone={toggleDone} />
+        ))}
+      </div>
+
+      <div className="header">
+        <button
+          className="btn"
+          style={{ backgroundColor: "red" }}
+          onClick={deleteAllTasks}
+        >
+          
+          DELETE ALL TASKS LIST
+        </button>
+      </div>
     </div>
   );
 };
