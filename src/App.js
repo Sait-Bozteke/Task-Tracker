@@ -4,6 +4,7 @@ import AddTask from "./components/AddTask";
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
 import Swal from "sweetalert2";
+import { v4 as uuid } from 'uuid';
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -29,18 +30,20 @@ function App() {
 
   const [showAddTask, setShowAddTask] = useState(false);
 
+  // ADD TASK
+  const addTask = (newTask) => {
+    const id = uuid();
+  
+  console.log(id);
+    const addNewTask = { id, ...newTask };
+    setTasks([...tasks, addNewTask]);
+  };
   // DELETE TASK
   const deleteTask = (deletedTaskId) => {
     // console.log("delete Task", deletedTaskId);
     setTasks(tasks.filter((task) => task.id !== deletedTaskId));
   };
 
-  // ADD TASK
-  const addTask = (newTask) => {
-    const id = Math.floor(Math.random() * 1000 + 1);
-    const addNewTask = { id, ...newTask };
-    setTasks([...tasks, addNewTask]);
-  };
   // Delete All Task
   const deleteAllTasks=()=>{
     Swal.fire({
